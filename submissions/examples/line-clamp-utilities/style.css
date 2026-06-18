@@ -1,0 +1,91 @@
+/* ============================================================
+   ease-line-clamp-* — Multi-Line Text Truncation Utilities
+
+   Features micro-interactions including:
+     - Webkit-box layout constraints for row-bounding limits
+     - Standard vertical orientation truncation flows
+     - Overrun text ellipsis management protecting card boundaries
+   ============================================================ */
+
+/* --- Core Truncation Utility Base Rules --- */
+
+.ease-line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.ease-line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.ease-line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.ease-line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+/* Clear helper modifier to dynamically reset clamp limits back to standard flow values */
+.ease-line-clamp-none {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+
+/* ============================================================
+   GRID PRESENTATION STYLES (Demo Specific)
+   ============================================================ */
+
+.ease-clamp-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  font-family: var(--ease-font-sans, sans-serif);
+}
+
+.ease-profile-card {
+  background: var(--ease-color-surface, #ffffff);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--ease-radius-xl, 0.75rem);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ease-profile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.ease-card-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ease-card-body {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+}
