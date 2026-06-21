@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color-Scheme Dark Utility Sandbox</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #1a1a1a; padding: 60px 20px; margin: 0;">
+
+  <div class="dark-canvas-preview ease-color-scheme-dark">
+    <h5>Native Browser Control Overrides</h5>
+    <p style="font-size: 0.9rem; color: #b3b3b3; line-height: 1.5; margin-bottom: 1.5rem;">
+      Notice how form components, scrollbars, and select wheels adapt automatically. Setting <code>color-scheme: dark</code> ensures the browser engine paints native scroll tracks, input backdrops, and interactive states using an optimized dark profile.
+    </p>
+
+    <div class="form-grid-row">
+      <label for="txt-demo">Standard Form Input Fields</label>
+      <input type="text" id="txt-demo" value="Dynamic Input Focus Block">
+    </div>
+
+    <div class="form-grid-row">
+      <label for="sel-demo">Native Selection Down-Drop Menus</label>
+      <select id="sel-demo">
+        <option>Framework Option Matrix Alpha</option>
+        <option>Framework Option Matrix Beta</option>
+      </select>
+    </div>
+
+    <div class="form-grid-row" style="flex-direction: row; gap: 0.5rem; align-items: center;">
+      <input type="checkbox" id="chk-demo" checked>
+      <label for="chk-demo" style="color: #ffffff; cursor: pointer;">Hardware-Accelerated Render Engine Loop</label>
+    </div>
+  </div>
+
+</body>
+</html>
