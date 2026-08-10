@@ -1,0 +1,171 @@
+/* Tippe Top Invert Spin #71067 */
+
+:root {
+  --bg-color: #0b0f19;
+  --card-bg: #151c2e;
+  --text-main: #f8fafc;
+  --text-sub: #94a3b8;
+  --accent-gold: #f59e0b;
+  --accent-gold-light: #fbbf24;
+  --stem-color: #cbd5e1;
+  --shadow-color: rgba(0, 0, 0, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container & Stage */
+.ease-tippe-top-invert-spin {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--card-bg);
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.ease-tippe-top-invert-spin__housing {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  padding: 3rem 0;
+}
+
+.ease-tippe-top-invert-spin__bezel {
+  position: relative;
+  width: 180px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ease-tippe-top-invert-spin__face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* Motion Group - Inversion & Spin Keyframe Assembly */
+.ease-tippe-top-invert-spin__motion {
+  position: absolute;
+  inset: 16% 6% 24%;
+  transform-style: preserve-3d;
+  animation: tippeTopInvertSpin 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Tippe Top Anatomical Elements */
+
+/* Stem (d) */
+.ease-tippe-top-invert-spin__d {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 12px;
+  height: 45px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #94a3b8, #f1f5f9, #64748b);
+  border-radius: 6px 6px 2px 2px;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+/* Main Spherical Body (a) */
+.ease-tippe-top-invert-spin__a {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 110px;
+  height: 90px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 45% 45%;
+  background: radial-gradient(circle at 35% 35%, var(--accent-gold-light), var(--accent-gold), #b45309);
+  box-shadow: inset -6px -6px 12px rgba(0, 0, 0, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Center Equator Ring / Accent Stripe (b) */
+.ease-tippe-top-invert-spin__b {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  width: 112px;
+  height: 14px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #78350f, #fef08a, #78350f);
+  border-radius: 7px;
+  opacity: 0.85;
+}
+
+/* Dynamic Dynamic Floor Shadow (c) */
+.ease-tippe-top-invert-spin__c {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  width: 90px;
+  height: 18px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--shadow-color) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: tippeShadowScale 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Keyframe Motion Mechanics */
+@keyframes tippeTopInvertSpin {
+  0% {
+    transform: rotateY(0deg) rotateX(10deg) translateY(0);
+  }
+  25% {
+    /* High-speed spin with increasing precessional tilt */
+    transform: rotateY(540deg) rotateX(35deg) translateY(-8px);
+  }
+  50% {
+    /* Critical inversion point - top flips onto stem */
+    transform: rotateY(1080deg) rotateX(180deg) translateY(-25px);
+  }
+  75% {
+    /* Inverted stability spin on stem */
+    transform: rotateY(1620deg) rotateX(170deg) translateY(-20px);
+  }
+  100% {
+    /* Settles back to upright starting configuration */
+    transform: rotateY(2160deg) rotateX(360deg) translateY(0);
+  }
+}
+
+@keyframes tippeShadowScale {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.65);
+    opacity: 0.4;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ease-tippe-top-invert-spin__motion,
+  .ease-tippe-top-invert-spin__c {
+    animation: none !important;
+  }
+}
