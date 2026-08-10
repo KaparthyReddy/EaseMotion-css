@@ -1,0 +1,217 @@
+/* Michelson Interferometer Fringe #71071 */
+
+:root {
+  --bg-color: #0b0f19;
+  --card-bg: #111827;
+  --border-color: #1e293b;
+  --text-main: #f8fafc;
+  --text-sub: #94a3b8;
+  --laser-red: #ff2a5f;
+  --laser-glow: rgba(255, 42, 95, 0.45);
+  --fringe-bright: #ff4d79;
+  --fringe-dark: #120309;
+  --grid-line: rgba(248, 250, 252, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.michelson-demo-container {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.michelson-demo-header h1 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.michelson-demo-header p {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+  margin: 0 0 2rem 0;
+}
+
+/* Base Component: ease-michelson-interferometer-fringe */
+.ease-michelson-interferometer-fringe {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ease-michelson-interferometer-fringe__housing {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0b0f19 100%);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 0 25px rgba(0, 0, 0, 0.9);
+}
+
+.ease-michelson-interferometer-fringe__bezel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgba(255, 42, 95, 0.35);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: inset 0 0 15px rgba(255, 42, 95, 0.15);
+}
+
+.ease-michelson-interferometer-fringe__face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #05070c;
+  overflow: hidden;
+}
+
+/* Detector Screen Frame */
+.ease-michelson-interferometer-fringe__motion {
+  position: absolute;
+  inset: 16% 6% 24%;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+}
+
+/* Element __a: Phase-shifting Interference Fringes */
+.ease-michelson-interferometer-fringe__a {
+  position: absolute;
+  inset: -50%;
+  background: repeating-radial-gradient(
+    circle at 48% 52%,
+    var(--fringe-bright) 0px,
+    var(--fringe-bright) 10px,
+    var(--fringe-dark) 18px,
+    var(--fringe-dark) 28px
+  );
+  background-size: 200% 200%;
+  background-position: center;
+  animation: fringe-phase-shift 5s linear infinite;
+  filter: blur(1px);
+  opacity: 0.9;
+}
+
+/* Element __b: Beam Splitter Diagonal Gleam & Optical Refinement */
+.ease-michelson-interferometer-fringe__b {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    transparent 45%,
+    rgba(255, 42, 95, 0.2) 50%,
+    transparent 55%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  mix-blend-mode: screen;
+  animation: beamsplitter-gleam 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Element __c: Precision Optical Reticle & Crosshairs */
+.ease-michelson-interferometer-fringe__c {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to right, transparent 49.5%, var(--grid-line) 50%, transparent 50.5%),
+    linear-gradient(to bottom, transparent 49.5%, var(--grid-line) 50%, transparent 50.5%),
+    radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.4) 90%);
+  pointer-events: none;
+}
+
+/* Element __d: Laser Center Intensity Glow & Phase Pulse */
+.ease-michelson-interferometer-fringe__d {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--laser-red) 0%, var(--laser-glow) 40%, transparent 75%);
+  filter: blur(8px);
+  mix-blend-mode: screen;
+  animation: laser-core-pulse 2.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Motion Keyframes */
+@keyframes fringe-phase-shift {
+  0% {
+    transform: scale(0.95) rotate(0deg);
+    background-position: 0% 0%;
+  }
+  50% {
+    transform: scale(1.05) rotate(180deg);
+    background-position: 100% 100%;
+  }
+  100% {
+    transform: scale(0.95) rotate(360deg);
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes beamsplitter-gleam {
+  0% {
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1.02) rotate(2deg);
+  }
+}
+
+@keyframes laser-core-pulse {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+.michelson-demo-hint {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-top: 1.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ease-michelson-interferometer-fringe__a,
+  .ease-michelson-interferometer-fringe__b,
+  .ease-michelson-interferometer-fringe__d {
+    animation: none;
+  }
+}
