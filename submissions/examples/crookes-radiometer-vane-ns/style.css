@@ -1,0 +1,246 @@
+/* Crookes Radiometer Vane #71072 */
+
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+  --text-main: #f8fafc;
+  --text-sub: #94a3b8;
+  --glass-glow: rgba(56, 189, 248, 0.15);
+  --light-hotspot: rgba(254, 240, 138, 0.35);
+  --silver-vane: #e2e8f0;
+  --dark-vane: #090d16;
+  --spindle-metal: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.radiometer-demo-container {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radiometer-demo-header h1 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.radiometer-demo-header p {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+  margin: 0 0 2rem 0;
+}
+
+/* Base Component: ease-crookes-radiometer-vane */
+.ease-crookes-radiometer-vane {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Outer Glass Bulb Silhouette Housing */
+.ease-crookes-radiometer-vane__housing {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.15) 0%, rgba(15, 23, 42, 0.8) 70%, #0b1120 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 
+    0 0 30px var(--glass-glow),
+    inset 0 10px 25px rgba(255, 255, 255, 0.25),
+    inset 0 -15px 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Inner Light Hotspot & Glass Reflection Rim */
+.ease-crookes-radiometer-vane__bezel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 50%;
+  padding: 8px;
+  background: radial-gradient(circle at 50% 10%, var(--light-hotspot) 0%, transparent 55%);
+}
+
+.ease-crookes-radiometer-vane__face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.9) 100%);
+  overflow: hidden;
+}
+
+/* Central Glass Stem Shadow Base */
+.ease-crookes-radiometer-vane__face::before {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 60px;
+  background: linear-gradient(180deg, transparent, rgba(148, 163, 184, 0.3), rgba(148, 163, 184, 0.6));
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Rotational Motion Stage */
+.ease-crookes-radiometer-vane__motion {
+  position: absolute;
+  inset: 16% 6% 24%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center center;
+  animation: radiometer-spin 2.8s linear infinite;
+}
+
+/* Component __a: Vertical Spindle Needle */
+.ease-crookes-radiometer-vane__a {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, var(--spindle-metal), #ffffff, var(--spindle-metal));
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+  z-index: 2;
+  border-radius: 2px;
+}
+
+/* Component __b: Horizontal Cross-Arm Spindle */
+.ease-crookes-radiometer-vane__b {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 50%;
+  height: 3px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--spindle-metal), #ffffff, var(--spindle-metal));
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  z-index: 3;
+  border-radius: 2px;
+}
+
+/* Component __c: Horizontal Vane Blades (Silver/Dark Alternating) */
+.ease-crookes-radiometer-vane__c {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 32px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 4;
+}
+
+.ease-crookes-radiometer-vane__c::before,
+.ease-crookes-radiometer-vane__c::after {
+  content: "";
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Left Vane: Dark facing outward, Silver inward */
+.ease-crookes-radiometer-vane__c::before {
+  background: linear-gradient(90deg, var(--dark-vane) 50%, var(--silver-vane) 50%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Right Vane: Silver facing outward, Dark inward */
+.ease-crookes-radiometer-vane__c::after {
+  background: linear-gradient(90deg, var(--silver-vane) 50%, var(--dark-vane) 50%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Component __d: Vertical Vane Blades (Silver/Dark Alternating) */
+.ease-crookes-radiometer-vane__d {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  bottom: 5%;
+  width: 32px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 4;
+}
+
+.ease-crookes-radiometer-vane__d::before,
+.ease-crookes-radiometer-vane__d::after {
+  content: "";
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Top Vane */
+.ease-crookes-radiometer-vane__d::before {
+  background: linear-gradient(180deg, var(--dark-vane) 50%, var(--silver-vane) 50%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Bottom Vane */
+.ease-crookes-radiometer-vane__d::after {
+  background: linear-gradient(180deg, var(--silver-vane) 50%, var(--dark-vane) 50%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Continuous Light-Driven Spin Keyframe Sequence */
+@keyframes radiometer-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radiometer-demo-hint {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-top: 1.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ease-crookes-radiometer-vane__motion {
+    animation: none;
+  }
+}
