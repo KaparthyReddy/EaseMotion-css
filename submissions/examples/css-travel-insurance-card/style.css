@@ -1,0 +1,263 @@
+/* CSS Travel Insurance Card #70915 */
+
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover-bg: #24334a;
+  --border-color: #334155;
+  --border-hover: #38bdf8;
+  --text-main: #f8fafc;
+  --text-sub: #94a3b8;
+  --accent-color: #38bdf8;
+  --success-color: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.15);
+  --accent-glow: rgba(56, 189, 248, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Travel Insurance Card Container */
+.insurance-card {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.insurance-card:hover,
+.insurance-card:focus-within {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.plan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--success-bg);
+  border: 1px solid var(--success-color);
+  border-radius: 50px;
+  color: var(--success-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--success-color);
+}
+
+.plan-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0.25rem 0 0 0;
+  letter-spacing: -0.01em;
+}
+
+.plan-price {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.price-val {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--accent-color);
+  line-height: 1;
+}
+
+.price-sub {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  margin-top: 0.2rem;
+}
+
+/* Divider Line */
+.card-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  width: 100%;
+}
+
+/* Coverage Grid Section */
+.coverage-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-sub);
+  margin: 0;
+}
+
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.coverage-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  border-radius: 12px;
+  padding: 0.85rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.insurance-card:hover .coverage-item {
+  border-color: var(--border-color);
+}
+
+.coverage-item:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.coverage-icon {
+  color: var(--accent-color);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.coverage-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.coverage-name {
+  font-size: 0.825rem;
+  color: var(--text-sub);
+  font-weight: 500;
+}
+
+.coverage-limit {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 0.15rem;
+}
+
+/* Footer & CTA */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.25rem;
+}
+
+.policy-meta {
+  font-size: 0.775rem;
+  color: var(--text-sub);
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background-color: var(--accent-color);
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.cta-btn:hover,
+.cta-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--accent-glow);
+  outline: none;
+}
+
+/* Accessibility Focus Ring */
+.insurance-card:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Responsive Layout */
+@media (max-width: 480px) {
+  .insurance-card {
+    padding: 1.25rem;
+  }
+
+  .coverage-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .cta-btn {
+    width: 100%;
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .insurance-card,
+  .coverage-item,
+  .cta-btn {
+    transition: none !important;
+  }
+
+  .insurance-card:hover,
+  .coverage-item:hover,
+  .cta-btn:hover {
+    transform: none !important;
+  }
+}
